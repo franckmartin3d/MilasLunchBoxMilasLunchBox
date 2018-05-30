@@ -32,13 +32,68 @@ class Recepi_list(object):
             print(key)
 
 
-#main
-global_recepi = Recepi_list()
+class Recipes(object):
+    """Creating recipes object"""
+    total = 0
+    @staticmethod
+    def status():
+        print("\nThe total number of recepi is ", Recipes.total)
+    def __init__(self, title, ingredient, instruction, type ):
+        self.title = title
+        self.ingredient = ingredient
+        self.instruction = instruction
+        self.type = type
+        Recipes.total +=1
 
-#global_recepi, breakfast_list, lunch_list, dinner_list = list1.create_empty()
-global_recepi.create_empty()
-title, description = global_recepi.add_recepi()
-global_recepi.show_recepi()
+
+    def __str__(self):
+        #rep = Recipes
+        rep =  str.upper(self.title) + " \n\n"
+        rep += "ingredient: \n" + self.ingredient + " \n\n"
+        rep += "instruction: \n" + self.instruction + " \n\n"
+        rep += "Type: \n" + self.type + " \n\n"
+        return rep
+
+    def display(self):
+        print("Title: \n" ,self.title, "\n")
+        print("ingredient: " + self.ingredient + " \n")
+        print("instruction: " + self.ingredient + " \n")
+
+    #edit
+    def changeTitle(self):
+        newtitle = input("Change title from", self.title, "to: \n")
+
+        if newtitle == "":
+            print("Recepie needs a title")
+        else:
+            self.title = newtitle
+
+    def changeIngredient(self):
+        newtitle = input("Change ingredient from", self.ingredient, "to: \n")
+
+        if newtitle == "":
+            print("Recepie needs ingredient")
+        else:
+            self.ingredient = newtitle
+
+
+
+
+
+
+###############################################main##################
+
+#global_recepi = Recepi_list()
+#global_recepi.create_empty()
+#title, description = global_recepi.add_recepi()
+#global_recepi.show_recepi()
+
+recepi1 = Recipes("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
+recepi2 = Recipes("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+print(recepi1)
+print(recepi2)
+Recipes.status()
+
 
 
 
