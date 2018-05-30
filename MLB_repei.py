@@ -8,12 +8,7 @@ class Recepi_list(object):
         """input:Nothing
         Output: 3 empty list"""
 
-        global_recepi= {}
-        breakfast_list = {}
-        lunch_list = {}
-        dinner_list = {}
-
-        return global_recepi,lunch_list,dinner_list,breakfast_list
+        self.list = {}
 
     #add new recepi to list
     def add_recepi(self):
@@ -21,27 +16,29 @@ class Recepi_list(object):
         output: add a recepi"""
         # get the title of the recepei
         print("ADD A RECEPI")
-        list = {}
         title = input("Recepi Title:")
-        if title not in list:
+        if title not in self.list:
             description = input("\n What is the descrition of the recepi:")
-            list[title] = description
+            self.list[title] = description
             print("\n", title, "Has been added.")
         else:
             print("the", title ," recepi is already in the list, try to edit it")
-        return list
+        return title, description
 
-    def show_global_recepi(self, list):
+    def show_recepi(self):
         """show all recepi in global recepi"""
         print("Here are all your recepi")
-        for key in list:
+        for key in self.list:
             print(key)
 
+
 #main
-list1 = Recepi_list()
-list1.create_empty()
-list1.add_recepi()
-list1.show_global_recepi(list)
+global_recepi = Recepi_list()
+
+#global_recepi, breakfast_list, lunch_list, dinner_list = list1.create_empty()
+global_recepi.create_empty()
+title, description = global_recepi.add_recepi()
+global_recepi.show_recepi()
 
 
 
