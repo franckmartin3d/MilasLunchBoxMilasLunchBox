@@ -32,9 +32,21 @@ class Recepi_list(object):
             print(key)
 
 
-class Recipes(object):
+class Recipe(object):
     """Creating recipes object"""
     total = 0
+
+    # Create an instance user input
+    @staticmethod
+    def userinstance():
+        print("Creating a recipe instance")
+        recepi_instance = input("What recepi name?")
+
+        recepi_instance = Recipe(input("Enter your recipe Title: \n"), input("Enter your recipe ingredient: \n"), input("Enter your recipe instruction: \n"),input("Enter your recipe Type: \n") )
+
+        return recepi_instance
+
+
     @staticmethod
     def status():
         print("\nThe total number of recepi is ", Recipes.total)
@@ -43,7 +55,7 @@ class Recipes(object):
         self.ingredient = ingredient
         self.instruction = instruction
         self.type = type
-        Recipes.total +=1
+        Recipe.total +=1
 
 
     def __str__(self):
@@ -88,8 +100,10 @@ class Recipes(object):
 #title, description = global_recepi.add_recepi()
 #global_recepi.show_recepi()
 
-recepi1 = Recipes("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
-recepi2 = Recipes("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
+recepi2 = Recipe("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+Recipe.userinstance()
+print(recepi_instance)
 print(recepi1)
 print(recepi2)
 Recipes.status()
