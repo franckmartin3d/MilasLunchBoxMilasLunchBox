@@ -49,13 +49,13 @@ class Recipe(object):
 
     @staticmethod
     def status():
-        print("\nThe total number of recepi is ", Recipes.total)
+        print("\nThe total number of recepi is ", Recipe.total)
     def __init__(self, title, ingredient, instruction, type ):
         self.title = title
         self.ingredient = ingredient
         self.instruction = instruction
         self.type = type
-        Recipe.total +=1
+        Recipe.      total +=1
 
 
     def __str__(self):
@@ -102,11 +102,14 @@ class Recipe(object):
 
 recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
 recepi2 = Recipe("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
-Recipe.userinstance()
-print(recepi_instance)
+recipe3 = Recipe.userinstance()
+
+
+
+print(recipe3)
 print(recepi1)
 print(recepi2)
-Recipes.status()
+Recipe.status()
 
 
 
