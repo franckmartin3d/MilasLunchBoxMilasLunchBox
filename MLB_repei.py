@@ -1,40 +1,13 @@
 # Mila's lunchbox recepi feature
 
 
-class Recepi_list(object):
-    """Creating recepi dictionary"""
-    #Create a empty dictionary
-    def create_empty(self):
-        """input:Nothing
-        Output: 3 empty list"""
+#Class
 
-        self.list = {}
-
-    #add new recepi to list
-    def add_recepi(self):
-        """input: nothing
-        output: add a recepi"""
-        # get the title of the recepei
-        print("ADD A RECEPI")
-        title = input("Recepi Title:")
-        if title not in self.list:
-            description = input("\n What is the descrition of the recepi:")
-            self.list[title] = description
-            print("\n", title, "Has been added.")
-        else:
-            print("the", title ," recepi is already in the list, try to edit it")
-        return title, description
-
-    def show_recepi(self):
-        """show all recepi in global recepi"""
-        print("Here are all your recepi")
-        for key in self.list:
-            print(key)
-
-
+#recepi object
 class Recipe(object):
     """Creating recipes object"""
     total = 0
+    rlist = []
 
     # Create an instance user input
     @staticmethod
@@ -55,7 +28,8 @@ class Recipe(object):
         self.ingredient = ingredient
         self.instruction = instruction
         self.type = type
-        Recipe.      total +=1
+        Recipe.total +=1
+        Recipe.rlist.append(self.title)
 
 
     def __str__(self):
@@ -88,28 +62,69 @@ class Recipe(object):
         else:
             self.ingredient = newtitle
 
+# List of all recepi
+
+# class Rlist(object):
+# """Creat a list of all recepi"""
+#     def __ini__(self, name):
+#         self.name = name
+#         self.list = []
+#         for i in titles:
+
+def recepilist():
+    for i in Recipe.rlist:
+        print("Title:", Recipe.rlist)
 
 
 
+#function
+# Main Menu
 
+def menuPrincipal() :
+    """Main menu"""
+    selection = None
+
+    while selection != "0":
+        print("""
+        
+        RECEPI MAIN Menue
+        
+        1 - List all Recepi
+        2 - List by Type
+        3 - Add new Recepi
+        4 - Edit a recepi
+        0 - Exit
+        """)
+
+        selection = input("Select: ")
+
+        if selection == "1":
+            print("Here Are all the Recepi Available!\n")
+            #print(Recipe.rlist)
+            recepilist()
+
+        elif selection == "2":
+            print("Recepi by type:")
+
+        elif selection =="3":
+            print("Add a new recepi!")
+
+        elif selection == "4":
+            print("Edit recepi")
+
+        elif selection == "0":
+            print("Quiting Recepi Main...")
 
 ###############################################main##################
 
-#global_recepi = Recepi_list()
-#global_recepi.create_empty()
-#title, description = global_recepi.add_recepi()
-#global_recepi.show_recepi()
-
+# Default recepi
 recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
 recepi2 = Recipe("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
-recipe3 = Recipe.userinstance()
+#recipe3 = Recipe.userinstance()
+
+menuPrincipal()
 
 
-
-print(recipe3)
-print(recepi1)
-print(recepi2)
-Recipe.status()
 
 
 
