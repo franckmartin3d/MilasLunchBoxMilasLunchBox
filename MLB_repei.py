@@ -7,16 +7,23 @@
 class Recipe(object):
     """Creating recipes object"""
     total = 0
+
+    #list of instance
     rlist = []
+    breakfastList = []
+    lunchList = []
+    dinnerList = []
+
 
     # Create an instance user input
     @staticmethod
     def userinstance():
         print("Creating a recipe instance")
-        recepi_instance = input("What recepi name?")
+        recepi_instance = input("What is the recepi title?:\n")
 
-        recepi_instance = Recipe(input("Enter your recipe Title: \n"), input("Enter your recipe ingredient: \n"), input("Enter your recipe instruction: \n"),input("Enter your recipe Type: \n") )
-
+        recepi_instance = Recipe(recepi_instance, input("Enter your recipe ingredient: \n"), input("Enter your recipe instruction: \n"),input("Enter your recipe Type: \n") )
+        print("--RECEPI CREATED--")
+        pressEnter()
         return recepi_instance
 
 
@@ -29,7 +36,23 @@ class Recipe(object):
         self.instruction = instruction
         self.type = type
         Recipe.total +=1
+
+        # Add to All List
         Recipe.rlist.append(self.title)
+
+        #Add to breakfast list:
+        if self.type == "breakfast" or self.type == "Breakfast":
+            Recipe.breakfastList.append(self.title)
+
+        # Add to Lunch list :
+        elif self.type == "Lunch" or self.type == "Lunch":
+            Recipe.lunchList.append(self.title)
+
+        #Add to dinner list
+        else:
+            Recipe.dinnerList.append(self.title)
+
+
 
 
     def __str__(self):
@@ -62,22 +85,93 @@ class Recipe(object):
         else:
             self.ingredient = newtitle
 
+
+##############################FUNCTION##################################################################################
+def pressEnter():
+    """Press enter to continue"""
+    try:
+        input("\nPress enter to continue")
+    except SyntaxError:
+        pass
+
+
+
+
 # List of all recepi
-
-# class Rlist(object):
-# """Creat a list of all recepi"""
-#     def __ini__(self, name):
-#         self.name = name
-#         self.list = []
-#         for i in titles:
-
 def recepilist():
+    """Display all recepi"""
+
+    print("\t---RECEPI---")
     for i in Recipe.rlist:
-        print("Title:", Recipe.rlist)
+        print("\t", i)
+
+    pressEnter()
+
+def breakfastList():
+    """Display breakfast recepi"""
+
+    print("\t---Breakfast RECEPI---")
+    for i in Recipe.breakfastList:
+        print("\t", i)
+
+    pressEnter()
+
+def lunchList():
+    """Display lunch recepi"""
+
+    print("\t---LUNCH RECEPI---")
+    for i in Recipe.lunchList:
+        print("\t", i)
+
+    pressEnter()
+
+def dinnerList():
+    """Display Dinner recepi"""
+    print("\t---Dinner RECEPI---")
+    for i in Recipe.dinnerList:
+        print("\t", i)
+
+    pressEnter()
+
+# Sub-menu
+def typeSubmenu():
+
+    typeChoice = None
+
+    while typeChoice != "0":
+        print("""
+
+               RECEPI TYPE TO DISPLAY
+
+                1 - Breakfast.
+                2 - Lunch.
+                3 - Dinner.
+                0 - Back to main menu
 
 
+                    """)
 
-#function
+        typeChoice = input("Select: \n")
+
+        if typeChoice == "1":
+            print("All AVAILABLE BREAKFAST RECEPI\n")
+            breakfastList()
+
+        elif typeChoice == "2":
+            print("All AVAILABLE LUNCH RECEPI\n")
+            lunchList()
+
+        elif typeChoice == "3":
+            print("All AVAILABLE DINNER RECEPI\n")
+            dinnerList()
+
+        elif typeChoice == "0":
+            print("Loading Main Menu\n")
+            menuPrincipal()
+
+        else:
+            print("Input invalide choose 1-4 or 0")
+
 # Main Menu
 
 def menuPrincipal() :
@@ -87,7 +181,7 @@ def menuPrincipal() :
     while selection != "0":
         print("""
         
-        RECEPI MAIN Menue
+        RECEPI MAIN MENU
         
         1 - List all Recepi
         2 - List by Type
@@ -96,7 +190,7 @@ def menuPrincipal() :
         0 - Exit
         """)
 
-        selection = input("Select: ")
+        selection = input("Select: \n")
 
         if selection == "1":
             print("Here Are all the Recepi Available!\n")
@@ -104,16 +198,21 @@ def menuPrincipal() :
             recepilist()
 
         elif selection == "2":
-            print("Recepi by type:")
+            #print("Display Recepi Sub-Menu\n")
+            typeSubmenu()
 
         elif selection =="3":
             print("Add a new recepi!")
+            Recipe.userinstance()
 
         elif selection == "4":
             print("Edit recepi")
 
         elif selection == "0":
             print("Quiting Recepi Main...")
+
+        else:
+            print("Input invalide choose 1-4 or 0")
 
 ###############################################main##################
 
