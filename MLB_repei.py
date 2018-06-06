@@ -87,14 +87,20 @@ class Recipe(object):
 
 
 ##############################FUNCTION##################################################################################
+# Utilities
+# press enter to continue
 def pressEnter():
     """Press enter to continue"""
     try:
         input("\nPress enter to continue")
+        print("\n" * 15)
+        print("=======================================================================================================")
     except SyntaxError:
         pass
-
-
+#clear IDLE
+def clear():
+    print("\n" * 15)
+    print("===========================================================================================================")
 
 
 # List of all recepi
@@ -111,8 +117,8 @@ def breakfastList():
     """Display breakfast recepi"""
 
     print("\t---Breakfast RECEPI---")
-    for i in Recipe.breakfastList:
-        print("\t", i)
+    for i, val in enumerate(Recipe.breakfastList):
+        print("\t", i, val)
 
     pressEnter()
 
@@ -134,6 +140,8 @@ def dinnerList():
     pressEnter()
 
 # Sub-menu
+
+# Type submenu
 def typeSubmenu():
 
     typeChoice = None
@@ -155,22 +163,58 @@ def typeSubmenu():
 
         if typeChoice == "1":
             print("All AVAILABLE BREAKFAST RECEPI\n")
+            clear()
             breakfastList()
 
         elif typeChoice == "2":
             print("All AVAILABLE LUNCH RECEPI\n")
+            clear()
             lunchList()
 
         elif typeChoice == "3":
             print("All AVAILABLE DINNER RECEPI\n")
+            clear()
             dinnerList()
 
         elif typeChoice == "0":
             print("Loading Main Menu\n")
+            clear()
             menuPrincipal()
 
         else:
             print("Input invalide choose 1-4 or 0")
+
+
+#select and display menue
+# def selectmenu():
+#     """Selection Main Menu"""
+#     choice = None
+#
+#     while choice != "0":
+#         print ("""
+#         1 - Select a recepi
+#         0 - Back to last mene
+#
+#         """)
+#     choice = input("Choice: ")
+#     if choice == "1":
+#
+#
+#
+#     elif choice == "0":
+#         typeSubmenu()
+
+# def selectobject():
+#     """Select object in list and display it"""
+#
+#
+#     print(r)
+#     selectedItem = None
+#
+#     for object in Recipe.rlist:
+#
+#
+#     while selectedItem != "0"
 
 # Main Menu
 
@@ -195,14 +239,17 @@ def menuPrincipal() :
         if selection == "1":
             print("Here Are all the Recepi Available!\n")
             #print(Recipe.rlist)
+            clear()
             recepilist()
 
         elif selection == "2":
             #print("Display Recepi Sub-Menu\n")
+            clear()
             typeSubmenu()
 
         elif selection =="3":
             print("Add a new recepi!")
+            clear()
             Recipe.userinstance()
 
         elif selection == "4":
