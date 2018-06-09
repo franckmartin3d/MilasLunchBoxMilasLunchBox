@@ -30,6 +30,7 @@ class Recipe(object):
     @staticmethod
     def status():
         print("\nThe total number of recepi is ", Recipe.total)
+
     def __init__(self, title, ingredient, instruction, type ):
         self.title = title
         self.ingredient = ingredient
@@ -66,7 +67,7 @@ class Recipe(object):
     def display(self):
         print("Title: \n" ,self.title, "\n")
         print("ingredient: " + self.ingredient + " \n")
-        print("instruction: " + self.ingredient + " \n")
+        print("instruction: " + self.instruction + " \n")
 
     #edit
     def changeTitle(self):
@@ -126,16 +127,16 @@ def lunchList():
     """Display lunch recepi"""
 
     print("\t---LUNCH RECEPI---")
-    for i in Recipe.lunchList:
-        print("\t", i)
+    for i, val in enumerate(Recipe.lunchList):
+        print("\t", i, val)
 
     pressEnter()
 
 def dinnerList():
     """Display Dinner recepi"""
     print("\t---Dinner RECEPI---")
-    for i in Recipe.dinnerList:
-        print("\t", i)
+    for i, val in enumerate(Recipe.dinnerList):
+        print("\t", i, val)
 
     pressEnter()
 
@@ -163,8 +164,9 @@ def typeSubmenu():
 
         if typeChoice == "1":
             print("All AVAILABLE BREAKFAST RECEPI\n")
-            clear()
+            listID = "b"
             breakfastList()
+            displaymenu('b')
 
         elif typeChoice == "2":
             print("All AVAILABLE LUNCH RECEPI\n")
@@ -185,24 +187,29 @@ def typeSubmenu():
             print("Input invalide choose 1-4 or 0")
 
 
-#select and display menue
-# def selectmenu():
-#     """Selection Main Menu"""
-#     choice = None
-#
-#     while choice != "0":
-#         print ("""
-#         1 - Select a recepi
-#         0 - Back to last mene
-#
-#         """)
-#     choice = input("Choice: ")
-#     if choice == "1":
-#
-#
-#
-#     elif choice == "0":
-#         typeSubmenu()
+# display menue
+def displaymenu(listID):
+    """Selection Main Menu"""
+    choice = None
+
+    while choice != "0":
+        print ("""
+        1 - Select a recepi
+        0 - Back to last menu
+
+        """)
+        choice = input("Choice: ")
+        if choice == "1":
+            recepiIndex = input("What recepi do you want to display: ")
+            if listID == "b":
+                recepi_instance = (breakfastList[recepiIndex])
+                print(object)
+                recepi_instance.display()
+
+
+
+        elif choice == "0":
+            typeSubmenu()
 
 # def selectobject():
 #     """Select object in list and display it"""
@@ -267,8 +274,11 @@ def menuPrincipal() :
 recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
 recepi2 = Recipe("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
 #recipe3 = Recipe.userinstance()
-
+#recepi2.display()
+#Recepi.breakfastList[0]
+#Recipe.display(Recipe.breakfastList[0])
 menuPrincipal()
+
 
 
 
