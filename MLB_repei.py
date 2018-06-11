@@ -54,8 +54,6 @@ class Recipe(object):
             Recipe.dinnerList.append(self.title)
 
 
-
-
     def __str__(self):
         #rep = Recipes
         rep =  str.upper(self.title) + " \n\n"
@@ -95,7 +93,6 @@ def pressEnter():
     try:
         input("\nPress enter to continue")
         print("\n" * 15)
-        print("=======================================================================================================")
     except SyntaxError:
         pass
 #clear IDLE
@@ -200,11 +197,13 @@ def displaymenu(listID):
         """)
         choice = input("Choice: ")
         if choice == "1":
-            recepiIndex = input("What recepi do you want to display: ")
+            recepiIndex = int(input("What recepi do you want to display: "))
             if listID == "b":
-                recepi_instance = (breakfastList[recepiIndex])
-                print(object)
-                recepi_instance.display()
+                print(listID)
+                print(Recipe.breakfastList[recepiIndex])
+                # recepi_instance = str((Recipe.breakfastList[recepiIndex]))
+
+
 
 
 
@@ -272,7 +271,7 @@ def menuPrincipal() :
 
 # Default recepi
 recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
-recepi2 = Recipe("Oat Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+Oat_bowl = Recipe("Oat_Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
 #recipe3 = Recipe.userinstance()
 #recepi2.display()
 #Recepi.breakfastList[0]
