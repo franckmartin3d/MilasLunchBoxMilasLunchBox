@@ -39,19 +39,19 @@ class Recipe(object):
         Recipe.total +=1
 
         # Add to All List
-        Recipe.rlist.append(self.title)
+        Recipe.rlist.append(self)
 
         #Add to breakfast list:
         if self.type == "breakfast" or self.type == "Breakfast":
-            Recipe.breakfastList.append(self.title)
+            Recipe.breakfastList.append(self)
 
         # Add to Lunch list :
-        elif self.type == "Lunch" or self.type == "Lunch":
-            Recipe.lunchList.append(self.title)
+        elif self.type == "lunch" or self.type == "Lunch":
+            Recipe.lunchList.append(self)
 
         #Add to dinner list
         else:
-            Recipe.dinnerList.append(self.title)
+            Recipe.dinnerList.append(self)
 
 
     def __str__(self):
@@ -63,9 +63,9 @@ class Recipe(object):
         return rep
 
     def display(self):
-        print("Title: \n" ,self.title, "\n")
-        print("ingredient: " + self.ingredient + " \n")
-        print("instruction: " + self.instruction + " \n")
+        print("Title: \n\n", self.title, "\n")
+        print("Ingredient: \n\n" + self.ingredient + " \n")
+        print("Instruction: \n\n" + self.instruction + " \n")
 
     #edit
     def changeTitle(self):
@@ -92,7 +92,7 @@ def pressEnter():
     """Press enter to continue"""
     try:
         input("\nPress enter to continue")
-        print("\n" * 15)
+     #   print("\n" * 15)
     except SyntaxError:
         pass
 #clear IDLE
@@ -106,8 +106,8 @@ def recepilist():
     """Display all recepi"""
 
     print("\t---RECEPI---")
-    for i in Recipe.rlist:
-        print("\t", i)
+    for i, val in enumerate(Recipe.rlist):
+        print("\t", i, val.title)
 
     pressEnter()
 
@@ -116,7 +116,7 @@ def breakfastList():
 
     print("\t---Breakfast RECEPI---")
     for i, val in enumerate(Recipe.breakfastList):
-        print("\t", i, val)
+        print("\t", i, val.title)
 
     pressEnter()
 
@@ -125,7 +125,7 @@ def lunchList():
 
     print("\t---LUNCH RECEPI---")
     for i, val in enumerate(Recipe.lunchList):
-        print("\t", i, val)
+        print("\t", i, val.title)
 
     pressEnter()
 
@@ -133,7 +133,7 @@ def dinnerList():
     """Display Dinner recepi"""
     print("\t---Dinner RECEPI---")
     for i, val in enumerate(Recipe.dinnerList):
-        print("\t", i, val)
+        print("\t", i, val.title)
 
     pressEnter()
 
@@ -167,13 +167,17 @@ def typeSubmenu():
 
         elif typeChoice == "2":
             print("All AVAILABLE LUNCH RECEPI\n")
-            clear()
+            listID = "l"
             lunchList()
+            displaymenu('l')
+
 
         elif typeChoice == "3":
             print("All AVAILABLE DINNER RECEPI\n")
-            clear()
+            listID = "d"
             dinnerList()
+            displaymenu('d')
+
 
         elif typeChoice == "0":
             print("Loading Main Menu\n")
@@ -191,24 +195,66 @@ def displaymenu(listID):
 
     while choice != "0":
         print ("""
-        1 - Select a recepi
-        0 - Back to last menu
+        
+        
+    ############################   
+    # 1 - Select a Recipe      #
+    # 0 - Back to Last Menu    #
+    ############################
 
         """)
         choice = input("Choice: ")
         if choice == "1":
-            recepiIndex = int(input("What recepi do you want to display: "))
+            recepiIndex = int(input("What recipe do you want to display: # "))
+
+            #Breakfast list menu
             if listID == "b":
-                print(listID)
-                print(Recipe.breakfastList[recepiIndex])
-                # recepi_instance = str((Recipe.breakfastList[recepiIndex]))
+                if recepiIndex in range(len(Recipe.breakfastList)):
+                    recepi_instance = Recipe.breakfastList[recepiIndex]
+                    recepi_instance.display()
+                else:
+                    print("\nINVALID SELECTION\nLOADING MAIN MENU!")
+                    clear()
+                    menuPrincipal()
 
 
+            #All list menu
+            elif listID == "a":
+                if recepiIndex in range(len(Recipe.rlist)):
+                    recepi_instance = Recipe.rlist[recepiIndex]
+                    recepi_instance.display()
+                else:
+                    print("\nINVALID SELECTION\nLOADING MAIN MENU!")
+                    clear()
+                    menuPrincipal()
 
+            #Lunch list menu
+            elif listID == "l":
+                if recepiIndex in range(len(Recipe.lunchList)):
+                    recepi_instance = Recipe.lunchList[recepiIndex]
+                    recepi_instance.display()
+                else:
+                    print("\nINVALID SELECTION\nLOADING MAIN MENU!")
+                    clear()
+                    menuPrincipal()
+
+            # Lunch list menu
+            elif listID == "d":
+                if recepiIndex in range(len(Recipe.dinnerList)):
+                    recepi_instance = Recipe.dinnerList[recepiIndex]
+                    recepi_instance.display()
+                else:
+                    print("\nINVALID SELECTION\nLOADING MAIN MENU!")
+                    clear()
+                    menuPrincipal()
 
 
         elif choice == "0":
             typeSubmenu()
+        else:
+            print("Input invalide choose 1 or 0")
+
+
 
 # def selectobject():
 #     """Select object in list and display it"""
@@ -233,20 +279,21 @@ def menuPrincipal() :
         
         RECEPI MAIN MENU
         
-        1 - List all Recepi
+        1 - List all Recipe
         2 - List by Type
-        3 - Add new Recepi
-        4 - Edit a recepi
+        3 - Add new Recipe
+        4 - Edit a Recipe
         0 - Exit
         """)
 
         selection = input("Select: \n")
 
         if selection == "1":
-            print("Here Are all the Recepi Available!\n")
+            print("Here Are all the Recipe Available!\n")
             #print(Recipe.rlist)
             clear()
             recepilist()
+            displaymenu("a")
 
         elif selection == "2":
             #print("Display Recepi Sub-Menu\n")
@@ -269,9 +316,15 @@ def menuPrincipal() :
 
 ###############################################main##################
 
-# Default recepi
-recepi1 = Recipe("Spagati", "Pasta, Tomato, Sauce, mince", "1:boil pasta\n2:do the sauce","dinner" )
-Oat_bowl = Recipe("Oat_Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+# Test Recipe
+testDinner1 = Recipe("test Spaghetti", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
+testDinner1 = Recipe("test Penne romanov", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
+
+testBreakfast1 = Recipe("test Oat_Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+testBreakfast2 = Recipe("test toast", "bread, peanut butter", "1: toat the bread 2: spread the pb","breakfast")
+
+testLunch2 = Recipe("test sandwich", "bread ham salami mayo", "Do the sanwich", "lunch")
+testLunch1 = Recipe("KD", "milk & KD", "do the kd", "lunch")
 #recipe3 = Recipe.userinstance()
 #recepi2.display()
 #Recepi.breakfastList[0]
