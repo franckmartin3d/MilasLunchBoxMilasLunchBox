@@ -109,7 +109,7 @@ def recepilist():
     for i, val in enumerate(Recipe.rlist):
         print("\t", i, val.title)
 
-    pressEnter()
+
 
 def breakfastList():
     """Display breakfast recepi"""
@@ -118,7 +118,7 @@ def breakfastList():
     for i, val in enumerate(Recipe.breakfastList):
         print("\t", i, val.title)
 
-    pressEnter()
+
 
 def lunchList():
     """Display lunch recepi"""
@@ -127,7 +127,7 @@ def lunchList():
     for i, val in enumerate(Recipe.lunchList):
         print("\t", i, val.title)
 
-    pressEnter()
+
 
 def dinnerList():
     """Display Dinner recepi"""
@@ -135,7 +135,7 @@ def dinnerList():
     for i, val in enumerate(Recipe.dinnerList):
         print("\t", i, val.title)
 
-    pressEnter()
+
 
 # Sub-menu
 
@@ -268,8 +268,34 @@ def displaymenu(listID):
 #
 #     while selectedItem != "0"
 
-# Main Menu
 
+def editmenu():
+    """ Edit Menu"""
+    selection = None
+
+    while selection != "0":
+        print("""
+
+            RECEPI MAIN MENU
+
+            1 - Display All Recepi
+            0 - Exit
+            """)
+
+        selection = input("Select: \n")
+
+        if selection == "1":
+            print("Here Are all the Recipe Available to Edit!\n")
+            recepiIndex = int(input("What recipe do you want to Edit: # "))
+
+            if recepiIndex in range(len(Recipe.rlist)):
+                    recepi_instance = Recipe.rlist[recepiIndex]
+                    recepi_instance.display()
+            else:
+                print("\nINVALID SELECTION\nLOADING MAIN MENU!")
+def editRecepi()
+
+#Main Menue
 def menuPrincipal() :
     """Main menu"""
     selection = None
@@ -301,18 +327,20 @@ def menuPrincipal() :
             typeSubmenu()
 
         elif selection =="3":
-            print("Add a new recepi!")
+            print("Add a new recipe!")
             clear()
             Recipe.userinstance()
 
         elif selection == "4":
-            print("Edit recepi")
+            print("Edit recipe")
+            recepilist()
+            editmenu()
 
         elif selection == "0":
-            print("Quiting Recepi Main...")
+            print("Quiting Recipe Main...")
 
         else:
-            print("Input invalide choose 1-4 or 0")
+            print("Input invalid choose 1-4 or 0")
 
 ###############################################main##################
 
