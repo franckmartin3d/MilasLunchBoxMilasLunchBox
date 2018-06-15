@@ -276,7 +276,7 @@ def editmenu():
     while selection != "0":
         print("""
 
-            RECEPI MAIN MENU
+            EDIT MAIN MENU
 
             1 - Display All Recepi
             0 - Exit
@@ -293,9 +293,28 @@ def editmenu():
                     recepi_instance.display()
             else:
                 print("\nINVALID SELECTION\nLOADING MAIN MENU!")
-def editRecepi()
+# def editRecepi():
+#     """Edit a recepie"""
+#     selection = None
+#
+#     while selection != "0":
+#         print("""
+#
+#                 EDIT SECTION
+#
+#                 1 - Title
+#                 2 - Ingredient
+#                 3 - Instruction
+#                 4 - Type
+#                 0 - Exit
+#                 """)
+#
+#         selection = input("Select: \n")
+#
+#         if selection == "1":
 
 #Main Menue
+
 def menuPrincipal() :
     """Main menu"""
     selection = None
