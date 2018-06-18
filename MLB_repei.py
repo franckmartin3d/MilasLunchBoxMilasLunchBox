@@ -1,4 +1,4 @@
-# Mila's lunchbox recepi feature
+# Mila's lunchbox recipe feature
 
 
 #Class
@@ -66,6 +66,7 @@ class Recipe(object):
         print("Title: \n\n", self.title, "\n")
         print("Ingredient: \n\n" + self.ingredient + " \n")
         print("Instruction: \n\n" + self.instruction + " \n")
+
 
     #edit
     def changeTitle(self):
@@ -137,25 +138,27 @@ def dinnerList():
 
 
 
-# Sub-menu
+########################################################     Sub-menu ##################################################
 
 # Type submenu
 def typeSubmenu():
+    """Submenu to select the type of recepi"""
+
 
     typeChoice = None
 
     while typeChoice != "0":
         print("""
 
-               RECEPI TYPE TO DISPLAY
+        RECEPI TYPE TO DISPLAY
 
-                1 - Breakfast.
-                2 - Lunch.
-                3 - Dinner.
-                0 - Back to main menu
+        1 - Breakfast.
+        2 - Lunch.
+        3 - Dinner.
+        0 - Back to main menu
 
 
-                    """)
+                """)
 
         typeChoice = input("Select: \n")
 
@@ -163,20 +166,20 @@ def typeSubmenu():
             print("All AVAILABLE BREAKFAST RECEPI\n")
             listID = "b"
             breakfastList()
-            displaymenu('b')
+            displaymenu('b',"typeSubmenu")
 
         elif typeChoice == "2":
             print("All AVAILABLE LUNCH RECEPI\n")
             listID = "l"
             lunchList()
-            displaymenu('l')
+            displaymenu('l',"typeSubmenu")
 
 
         elif typeChoice == "3":
             print("All AVAILABLE DINNER RECEPI\n")
             listID = "d"
             dinnerList()
-            displaymenu('d')
+            displaymenu('d',"typeSubmenu")
 
 
         elif typeChoice == "0":
@@ -187,25 +190,28 @@ def typeSubmenu():
         else:
             print("Input invalide choose 1-4 or 0")
 
+    position = "typeSubmenu"
+    return position
 
-# display menue
-def displaymenu(listID):
+# display menu
+def displaymenu(listID, position):
     """Selection Main Menu"""
+
     choice = None
 
     while choice != "0":
         print ("""
         
         
-    ############################   
-    # 1 - Select a Recipe      #
-    # 0 - Back to Last Menu    #
-    ############################
+        ############################
+        # 1 - Select a Recipe      #
+        # 0 - Back to Last Menu    #
+        ############################
 
         """)
-        choice = input("Choice: ")
+        choice = input("Choice:\n ")
         if choice == "1":
-            recepiIndex = int(input("What recipe do you want to display: # "))
+            recepiIndex = int(input("Display the following recipe: (#)\n "))
 
             #Breakfast list menu
             if listID == "b":
@@ -250,27 +256,26 @@ def displaymenu(listID):
 
 
         elif choice == "0":
-            typeSubmenu()
+
+            #return to type submenu
+            if position == "typeSubmenu":
+                typeSubmenu()
+
+            #return to main menu
+            elif position == "mainmenu":
+                menuPrincipal()
+
         else:
             print("Input invalide choose 1 or 0")
 
+    position = "displaymenu"
+    return position
 
-
-# def selectobject():
-#     """Select object in list and display it"""
-#
-#
-#     print(r)
-#     selectedItem = None
-#
-#     for object in Recipe.rlist:
-#
-#
-#     while selectedItem != "0"
 
 
 def editmenu():
     """ Edit Menu"""
+
     selection = None
 
     while selection != "0":
@@ -278,7 +283,7 @@ def editmenu():
 
             EDIT MAIN MENU
 
-            1 - Display All Recepi
+            1 - Display All Recipe to edit
             0 - Exit
             """)
 
@@ -286,36 +291,72 @@ def editmenu():
 
         if selection == "1":
             print("Here Are all the Recipe Available to Edit!\n")
+            recepilist()
             recepiIndex = int(input("What recipe do you want to Edit: # "))
 
             if recepiIndex in range(len(Recipe.rlist)):
                     recepi_instance = Recipe.rlist[recepiIndex]
                     recepi_instance.display()
+
+                    print("debug here")
+
+                    editRecepi(recepi_instance)
+                    return recepi_instance
             else:
                 print("\nINVALID SELECTION\nLOADING MAIN MENU!")
-# def editRecepi():
-#     """Edit a recepie"""
-#     selection = None
-#
-#     while selection != "0":
-#         print("""
-#
-#                 EDIT SECTION
-#
-#                 1 - Title
-#                 2 - Ingredient
-#                 3 - Instruction
-#                 4 - Type
-#                 0 - Exit
-#                 """)
-#
-#         selection = input("Select: \n")
-#
-#         if selection == "1":
 
-#Main Menue
+    position = "editmenu"
+    return
 
-def menuPrincipal() :
+def editRecepi(recepi_instance):
+    """Edit a recepie"""
+    selection = None
+
+    while selection != "0":
+        print("""
+
+        EDIT SECTION
+
+        1 - Title
+        2 - Ingredient
+        3 - Instruction
+        4 - Type
+        0 - Back to mainmenu
+                """)
+
+        selection = input("Select: \n")
+
+        #replce title
+        if selection == "1":
+            recepi_instance.title = input("Changing title from " + recepi_instance.title + " to :\n")
+
+            print("Title is now:", recepi_instance.title)
+
+        #replace Ingredient
+        elif selection == "2":
+            recepi_instance.ingredient = input("Changing ingredient from " + recepi_instance.ingredient + " to :\n")
+
+            print("Ingedient is now:", recepi_instance.ingredient)
+
+        #replace Instruction
+        elif selection == "3":
+            recepi_instance.instruction = input("Changing Instruction from " + recepi_instance.instruction + " to :\n")
+
+            print("instruction is now:", recepi_instance.instruction)
+
+        # replace type
+        elif selection == "4":
+            recepi_instance.type = input("Changing type from " + recepi_instance.type + " to :\n")
+
+            print("type is now:", recepi_instance.type)
+
+        else:
+            menuPrincipal()
+
+
+#MainMenue
+
+def menuPrincipal():
     """Main menu"""
     selection = None
 
@@ -338,7 +379,7 @@ def menuPrincipal() :
             #print(Recipe.rlist)
             clear()
             recepilist()
-            displaymenu("a")
+            displaymenu("a","mainmenu")
 
         elif selection == "2":
             #print("Display Recepi Sub-Menu\n")
@@ -352,7 +393,6 @@ def menuPrincipal() :
 
         elif selection == "4":
             print("Edit recipe")
-            recepilist()
             editmenu()
 
         elif selection == "0":
@@ -361,7 +401,10 @@ def menuPrincipal() :
         else:
             print("Input invalid choose 1-4 or 0")
 
-###############################################main##################
+    position = "mainmenu"
+    return position
+
+###############################################main################################################################3####
 
 # Test Recipe
 testDinner1 = Recipe("test Spaghetti", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
