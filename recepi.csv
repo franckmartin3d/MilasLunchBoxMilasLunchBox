@@ -1,0 +1,69 @@
+"TEST SPAGHETTI 
+
+ingredient: 
+Pasta, Tomato, Sauce, mince 
+
+instruction: 
+1:boil pasta 2:do the sauce 
+
+Type: 
+dinner 
+
+","TEST PENNE ROMANOV 
+
+ingredient: 
+Pasta, Tomato, Sauce, mince 
+
+instruction: 
+1:boil pasta 2:do the sauce 
+
+Type: 
+dinner 
+
+","TEST OAT_BOWL 
+
+ingredient: 
+Oat , Milk 
+
+instruction: 
+1: Put oat on stove
+2: pour milk in it 
+3:wait until bubles 
+
+Type: 
+Breakfast 
+
+","TEST TOAST 
+
+ingredient: 
+bread, peanut butter 
+
+instruction: 
+1: toat the bread 2: spread the pb 
+
+Type: 
+breakfast 
+
+","TEST SANDWICH 
+
+ingredient: 
+bread ham salami mayo 
+
+instruction: 
+Do the sanwich 
+
+Type: 
+lunch 
+
+","KD 
+
+ingredient: 
+milk & KD 
+
+instruction: 
+do the kd 
+
+Type: 
+lunch 
+
+"

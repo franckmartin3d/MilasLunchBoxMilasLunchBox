@@ -1,9 +1,6 @@
 # Mila's lunchbox recipe feature
 
 
-
-
-import pickle
 #Class
 
 #recepi object
@@ -139,6 +136,15 @@ def dinnerList():
     for i, val in enumerate(Recipe.dinnerList):
         print("\t", i, val.title)
 
+#####################################################        DATA        ################
+from csv import reader
+from csv import writer
+
+
+def data_rlist():
+    with open("recepi.csv", "w") as file:
+        csv_writer = writer(file)
+        csv_writer.writerow(Recipe.rlist)
 
 
 ########################################################     Sub-menu ##################################################
@@ -372,6 +378,7 @@ def menuPrincipal():
         2 - List by Type
         3 - Add new Recipe
         4 - Edit a Recipe
+        5 - debug display saved data
         0 - Exit
         """)
 
@@ -397,6 +404,10 @@ def menuPrincipal():
         elif selection == "4":
             print("Edit recipe")
             editmenu()
+
+        elif selection == "5":
+            print("Saved data")
+            data_rlist()
 
         elif selection == "0":
             print("Quiting Recipe Main...")
