@@ -2,6 +2,9 @@
 
 
 #Class
+import jsonpickle
+#load objects
+
 
 #recepi object
 class Recipe(object):
@@ -87,6 +90,17 @@ class Recipe(object):
 
 
 ##############################FUNCTION##################################################################################
+def load_rlist():
+    with open("rlist.json", "r") as file:
+        contents = file.read()
+        Recipe.rlist = jsonpickle.decode(contents)
+        print("loaded data from rlist.json")
+
+
+
+load_rlist()
+
+
 # Utilities
 # press enter to continue
 def pressEnter():
@@ -137,14 +151,22 @@ def dinnerList():
         print("\t", i, val.title)
 
 #####################################################        DATA        ################
-from csv import reader
-from csv import writer
+# from csv import reader
+# from csv import writer
+#
+#
+# def data_rlist():
+#     with open("recepi.csv", "w") as file:
+#         csv_writer = writer(file)
+#         csv_writer.writerow(Recipe.rlist)
 
 
+#save
 def data_rlist():
-    with open("recepi.csv", "w") as file:
-        csv_writer = writer(file)
-        csv_writer.writerow(Recipe.rlist)
+    with open("rlist.json", "w") as file:
+        fileobject = jsonpickle.encode(Recipe.rlist)
+        file.write(fileobject)
+
 
 
 ########################################################     Sub-menu ##################################################
@@ -420,21 +442,25 @@ def menuPrincipal():
 
 ###############################################main################################################################3####
 
-# Test Recipe
-testDinner1 = Recipe("test Spaghetti", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
-testDinner1 = Recipe("test Penne romanov", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
+#Test Recipe
+# testDinner1 = Recipe("test Spaghetti", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
+# testDinner2 = Recipe("test Penne romanov", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
+#
+# testBreakfast1 = Recipe("test Oat_Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
+# testBreakfast2 = Recipe("test toast", "bread, peanut butter", "1: toat the bread 2: spread the pb","breakfast")
+#
+# testLunch2 = Recipe("test sandwich", "bread ham salami mayo", "Do the sanwich", "lunch")
+# testLunch1 = Recipe("KD", "milk & KD", "do the kd", "lunch")
 
-testBreakfast1 = Recipe("test Oat_Bowl", "Oat , Milk", "1: Put oat on stove\n2: pour milk in it \n3:wait until bubles", "Breakfast")
-testBreakfast2 = Recipe("test toast", "bread, peanut butter", "1: toat the bread 2: spread the pb","breakfast")
 
-testLunch2 = Recipe("test sandwich", "bread ham salami mayo", "Do the sanwich", "lunch")
-testLunch1 = Recipe("KD", "milk & KD", "do the kd", "lunch")
-#recipe3 = Recipe.userinstance()
-#recepi2.display()
-#Recepi.breakfastList[0]
-#Recipe.display(Recipe.breakfastList[0])
+
 menuPrincipal()
 
+
+
+#########################SAVE###########################
+
+data_rlist()
 
 
 
