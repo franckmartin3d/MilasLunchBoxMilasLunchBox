@@ -1,24 +1,25 @@
 # Mila's lunchbox recipe feature
 
 
-#Class
+
 import jsonpickle
-#load objects
 
 
-#recepi object
+# -----------------------------------------> CLASS <--------------------------------------------------------------------
+
+# recipe object
 class Recipe(object):
     """Creating recipes object"""
     total = 0
 
-    #list of instance
+# list of instance objects
     rlist = []
     breakfastList = []
     lunchList = []
     dinnerList = []
 
 
-    # Create an instance user input
+# Create an instance user input
     @staticmethod
     def userinstance():
         print("Creating a recipe instance")
@@ -29,11 +30,12 @@ class Recipe(object):
         pressEnter()
         return recepi_instance
 
-
+# Update how many there is
     @staticmethod
     def status():
         print("\nThe total number of recepi is ", Recipe.total)
 
+# Attribute of the class title ingredient instruction, type
     def __init__(self, title, ingredient, instruction, type ):
         self.title = title
         self.ingredient = ingredient
@@ -56,7 +58,7 @@ class Recipe(object):
         else:
             Recipe.dinnerList.append(self)
 
-
+# Display the object when using print
     def __str__(self):
         #rep = Recipes
         rep =  str.upper(self.title) + " \n\n"
@@ -65,13 +67,14 @@ class Recipe(object):
         rep += "Type: \n" + self.type + " \n\n"
         return rep
 
+# Display the object method
     def display(self):
-        print("Title: \n\n", self.title, "\n")
+        print("Title: \n\n" +self.title, "\n")
         print("Ingredient: \n\n" + self.ingredient + " \n")
         print("Instruction: \n\n" + self.instruction + " \n")
 
 
-    #edit
+# Edit methods
     def changeTitle(self):
         newtitle = input("Change title from", self.title, "to: \n")
 
@@ -88,8 +91,9 @@ class Recipe(object):
         else:
             self.ingredient = newtitle
 
+# -------------------------------------------> Save/load Functions <----------------------------------------------------
 
-##############################FUNCTION##################################################################################
+# load the data from json file (rlist objects)
 def load_rlist():
     with open("rlist.json", "r") as file:
         contents = file.read()
@@ -97,11 +101,13 @@ def load_rlist():
         print("loaded data from rlist.json")
 
 
+# Save data object
+def data_rlist():
+    with open("rlist.json", "w") as file:
+        fileobject = jsonpickle.encode(Recipe.rlist)
+        file.write(fileobject)
 
-load_rlist()
 
-
-# Utilities
 # press enter to continue
 def pressEnter():
     """Press enter to continue"""
@@ -110,13 +116,17 @@ def pressEnter():
      #   print("\n" * 15)
     except SyntaxError:
         pass
-#clear IDLE
+
+
+# clear IDLE
 def clear():
     print("\n" * 15)
     print("===========================================================================================================")
 
+# -----------------------------------------> Display recipe list functions <--------------------------------------------
 
-# List of all recepi
+
+# List of all
 def recepilist():
     """Display all recepi"""
 
@@ -125,7 +135,7 @@ def recepilist():
         print("\t", i, val.title)
 
 
-
+# breakfast list
 def breakfastList():
     """Display breakfast recepi"""
 
@@ -134,7 +144,7 @@ def breakfastList():
         print("\t", i, val.title)
 
 
-
+# lunch list
 def lunchList():
     """Display lunch recepi"""
 
@@ -143,38 +153,20 @@ def lunchList():
         print("\t", i, val.title)
 
 
-
+# dinner list
 def dinnerList():
     """Display Dinner recepi"""
     print("\t---Dinner RECEPI---")
     for i, val in enumerate(Recipe.dinnerList):
         print("\t", i, val.title)
 
-#####################################################        DATA        ################
-# from csv import reader
-# from csv import writer
-#
-#
-# def data_rlist():
-#     with open("recepi.csv", "w") as file:
-#         csv_writer = writer(file)
-#         csv_writer.writerow(Recipe.rlist)
+
+# ----------------------------------------------------> Menu/Type <----------------------------------------------------
 
 
-#save
-def data_rlist():
-    with open("rlist.json", "w") as file:
-        fileobject = jsonpickle.encode(Recipe.rlist)
-        file.write(fileobject)
-
-
-
-########################################################     Sub-menu ##################################################
-
-# Type submenu
+# Type submenu to select the typw recipe
 def typeSubmenu():
-    """Submenu to select the type of recepi"""
-
+    """Submenu to select the type of recipe"""
 
     typeChoice = None
 
@@ -224,14 +216,17 @@ def typeSubmenu():
     position = "typeSubmenu"
     return position
 
-# display menu
+# --------------------------------------> Menu/ Display <---------------------------------------------------------------
+
+
+# Display after a list
 def displaymenu(listID, position):
     """Selection Main Menu"""
 
     choice = None
 
     while choice != "0":
-        print ("""
+        print("""
         
         
         ############################
@@ -303,7 +298,7 @@ def displaymenu(listID, position):
     return position
 
 
-
+# ----------------------------------------------------> the edit recipe menu <------------------------------------------
 def editmenu():
     """ Edit Menu"""
 
@@ -339,6 +334,9 @@ def editmenu():
     position = "editmenu"
     return
 
+
+# -------------------------------------------------------> edit what type menu <----------------------------------------
+# type of attribute to edit
 def editRecepi(recepi_instance):
     """Edit a recepie"""
     selection = None
@@ -385,7 +383,7 @@ def editRecepi(recepi_instance):
             menuPrincipal()
 
 
-#MainMenue
+# -------------------------------------------------> MAIN MENU <--------------------------------------------------------
 
 def menuPrincipal():
     """Main menu"""
@@ -440,9 +438,9 @@ def menuPrincipal():
     position = "mainmenu"
     return position
 
-###############################################main################################################################3####
+# -----------------------------------------------> Default test recipe <------------------------------------------------
 
-#Test Recipe
+# Test Recipe
 # testDinner1 = Recipe("test Spaghetti", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
 # testDinner2 = Recipe("test Penne romanov", "Pasta, Tomato, Sauce, mince", "1:boil pasta 2:do the sauce","dinner" )
 #
@@ -452,14 +450,15 @@ def menuPrincipal():
 # testLunch2 = Recipe("test sandwich", "bread ham salami mayo", "Do the sanwich", "lunch")
 # testLunch1 = Recipe("KD", "milk & KD", "do the kd", "lunch")
 
+# --------------------------------------------------> Main <------------------------------------------------------------
 
+# Load data from json file
+load_rlist()
 
+# load main menu
 menuPrincipal()
 
-
-
-#########################SAVE###########################
-
+# save recipe objects
 data_rlist()
 
 
