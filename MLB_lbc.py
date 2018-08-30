@@ -30,5 +30,6 @@ class LunchItem(object):
 
 # Display the object when using print
     def __str__(self):
-        rep = str.upper(self):
-        rep =
+        rep = str.upper(self.title) + '\n\n'
+        rep += str.rep += "Nutitious Value: \n" + self.nvalue + " \n\n"
+        rep += "type: \n" + self.type + " \n\n"
