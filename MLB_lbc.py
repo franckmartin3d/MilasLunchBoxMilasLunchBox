@@ -16,7 +16,7 @@ class LunchItem(object):
 
     meallist = []
     vegylist = []
-    fruilist = []
+    fruitlist = []
     dairylist =[]
 
 
@@ -33,10 +33,14 @@ class LunchItem(object):
     # Add to itemlist
         LunchItem.itemlist.append(self)
 
-        if self.type == "mael" or self == "Meal":
+        if self.type == "meal" or self.type == "Meal":
             LunchItem.meallist.append(self)
 
+        if self.type == "vegy" or self.type == "Vegy":
+            LunchItem.vegylist.append(self)
 
+        if self.type == "fruit" or self.type == "frui":
+            LunchItem.fruitlist.append(self)
 
 # Display the object when using print
     def __str__(self):
@@ -59,5 +63,19 @@ def itemlist():
     """Display all item """
 
     print("\t---Item Available---")
-    for i, val in enumerate(Recipe.rlist):
+    for i, val in enumerate(LunchItem.itemlist):
+        print("\t", i, val.title)
+
+def vegylist():
+    """Display all item """
+
+    print("\t---Item Available---")
+    for i, val in enumerate(LunchItem.vegylist):
+        print("\t", i, val.title)
+
+def itemlist():
+    """Display all item """
+
+    print("\t---Item Available---")
+    for i, val in enumerate(LunchItem.itemlist):
         print("\t", i, val.title)
