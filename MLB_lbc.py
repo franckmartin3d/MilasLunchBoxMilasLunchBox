@@ -2,6 +2,35 @@
 
 
 # -----------------------------------------> CLASS <--------------------------------------------------------------------
+class Box(object):
+    """Lunchbox item that will have all of the items"""
+    lunchbox = 0
+
+    # constructor
+    # Atribute : Main Meal slot, Vegy Slot, fruit slot, dairy slot, desert slot
+    # TODO find how to construct slots
+    def __init__(self, title, smeal, svegy, sfruit, sdairy, sdesert):
+        self.title = title
+        self.smeal = ?
+        self.svegy = ?
+        self.sfruit = ?
+        self.sdairy = ?
+        self.sdesert = ?
+
+    # Create a manual lunchbox
+    def createManual():
+
+    #Create a random lunchbox
+    def createRandom():
+
+    #edit lunchbox
+    def editLunch():
+
+    #display all lunchbox
+    def displaylunch():
+
+    # Select a lunchbox for the day
+    def selectLunchbox():
 
 
 #Item class , items that can be added to the slots of a lunchbox
@@ -73,9 +102,6 @@ class LunchItem(object):
         print("Title: \n\n" +self.title, "\n")
         print("value: \n\n" + self.nvalue + " \n")
         print("type: \n\n" + self.type + " \n")
-
-
-
 # -----------------------------------------> functions <--------------------------------------------
 
 # show what item there is
