@@ -6,16 +6,35 @@ class Box(object):
     """Lunchbox item that will have all of the items"""
     lunchbox = 0
 
+
+#static methods
+    # Create an instance user input
+
+
+
+    @staticmethod
+    def status():
+        print("\nThe total number of lunchbox stored is: ", Box.lunchbox)
+
     # constructor
     # Atribute : Main Meal slot, Vegy Slot, fruit slot, dairy slot, desert slot
     # TODO find how to construct slots
     def __init__(self, title, smeal, svegy, sfruit, sdairy, sdesert):
         self.title = title
-        self.smeal = ?
-        self.svegy = ?
-        self.sfruit = ?
-        self.sdairy = ?
-        self.sdesert = ?
+        self.smeal = smeal
+        self.svegy = svegy
+        self.sfruit = sfruit
+        self.sdairy = sdairy
+        self.sdesert = sdesert
+
+    # Display itself
+    def __str__(self):
+        rep = str.upper(self.title) + '\n\n'
+        rep = str.rep = "Main Meal \n" + self.smeal + " \n\n"
+        rep = str.rep = "Vegy \n" + self.svegy + " \n\n"
+        rep = str.rep = "fruit \n" + self.sfruit + " \n\n"
+        rep = str.rep = "dairy \n" + self.sdairy + " \n\n"
+        rep = str.rep = "desert \n" + self.sdesert + " \n\n"
 
     # Create a manual lunchbox
     def createManual():
@@ -37,17 +56,6 @@ class Box(object):
 class LunchItem(object):
     """Creating items object to use by the lunchbox"""
     item = 0
-
-# list of instance objects
-    itemlist = []
-
-# list by type
-
-    meallist = []
-    vegylist = []
-    fruitlist = []
-    dairylist =[]
-    dessertlist = []
 
 # Create an instance user input
     @staticmethod
@@ -102,7 +110,19 @@ class LunchItem(object):
         print("Title: \n\n" +self.title, "\n")
         print("value: \n\n" + self.nvalue + " \n")
         print("type: \n\n" + self.type + " \n")
-# -----------------------------------------> functions <--------------------------------------------
+# -----------------------------------------> item list functions <--------------------------------------------
+
+
+# list of instance objects
+itemlist = []
+
+# list by type
+
+meallist = []
+vegylist = []
+fruitlist = []
+dairylist =[]
+dessertlist = []
 
 # show what item there is
 def itemlist():
