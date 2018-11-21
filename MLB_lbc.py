@@ -10,8 +10,6 @@ class Box(object):
 #static methods
     # Create an instance user input
 
-
-
     @staticmethod
     def status():
         print("\nThe total number of lunchbox stored is: ", Box.lunchbox)
@@ -110,6 +108,18 @@ class LunchItem(object):
         print("Title: \n\n" +self.title, "\n")
         print("value: \n\n" + self.nvalue + " \n")
         print("type: \n\n" + self.type + " \n")
+
+
+# menu class
+
+class BaseMenu:
+    """Class that will drive the menu's"""
+
+    def __init__(self, title, ):
+
+
+
+
 # -----------------------------------------> item list functions <--------------------------------------------
 
 
