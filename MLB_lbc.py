@@ -2,16 +2,12 @@
 
 
 # -----------------------------------------> CLASS <--------------------------------------------------------------------
-class Box(object):
+class LunchBox(object):
     """Lunchbox item that will have all of the items"""
     lunchbox = 0
 
-
 #static methods
     # Create an instance user input
-
-
-
     @staticmethod
     def status():
         print("\nThe total number of lunchbox stored is: ", Box.lunchbox)
@@ -53,13 +49,13 @@ class Box(object):
 
 
 #Item class , items that can be added to the slots of a lunchbox
-class LunchItem(object):
+class FoodItem(object):
     """Creating items object to use by the lunchbox"""
     item = 0
 
 # Create an instance user input
     @staticmethod
-    def userinstance():
+    def userInstance():
         print("Creating Lunch Item  instance")
         lunchitem_instance = input("What is the Lunch Item title?:\n")
 
@@ -71,7 +67,7 @@ class LunchItem(object):
 # Update how many there is
     @staticmethod
     def status():
-        print("\nThe total number of Lunch item is ", LunchItem.item)
+        print("\nThe total number of Lunch item is ", FoodItem.item)
 
 #Attribute of the class , Title, Nutitious value, type
 
@@ -181,10 +177,43 @@ def clear():
 
 
 # -------------------------------------------------> MAIN MENU <--------------------------------------------------------
+class Menue(object):
+    """Menue Object for all menue"""
+
+
+
+
 
 #main menu can i put that into its own class?
 def menuPrincipal():
     """Main Menue"""
+    def __init__(self, optionA, optionB, optionC, optionD,  optionE,  optionF ):
+        self.subMenu1 = optionA
+        self.SubMenu2= optionB
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     selection = None
 
     while selection != "0":
